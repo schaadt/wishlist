@@ -2,6 +2,207 @@
   text-align: center;
 }
 
+@media screen and (max-width: 768px) {
+  .container {
+    overflow: auto;
+  }
+   .column {
+     min-width: 100%;
+     width: 100%;
+     margin: 10px 0;
+  }
+}
+
+.board-text{
+font-size: 18px;
+font-weight: 500;
+}
+
+.row { 
+  display:flex;
+  flex-wrap: wrap;
+}
+
+.column {
+  flex-grow: 1;
+  flex-shrink: 1;
+  flex-basis: 1;
+  
+  margin: 10px;
+  
+  background-color: #efefef;
+  border: 1px solid #dedede;
+  
+}
+
+.box{
+  display: flex;
+  flex: 0 0 32%;
+  align-content: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all .2s ease-in-out; 
+}
+
+.box:hover{
+  transform: scale(0.9); 
+}
+
+.col-1 {
+  max-width: calc(100% / 12);
+  padding: 20px;
+}
+.col-2 {
+  max-width: calc(100% / 12 * 2);
+}
+.col-3 {
+  max-width: calc(100% / 12 * 3);
+}
+.col-4 {
+  max-width: calc(100% / 12 * 4);
+}
+.col-5 {
+  max-width: calc(100% / 12 * 5);
+}
+.col-6 {
+  max-width: calc(100% / 2);
+}
+
+
+* {
+  box-sizing: border-box;
+}
+body {
+  padding: 20px;
+}
+.flex-grid { 
+  margin: 0 0 20px 0;
+}
+.col {
+  background: salmon;
+  padding: 20px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ul {
+  margin: 0;
+  }
+  
+  a {
+  text-decoration: none;
+  }
+  span {
+  font-weight: bolder;
+  cursor: pointer;
+  }
+
+button {
+  margin: 5px;
+  padding: 5px;
+  font-size: 1em;
+  border-radius: 5px;
+  cursor: pointer;
+  border: none;
+  }
+
+
+  
+  
+  
+  
+
+
+/* LABELS */
+.modal-body form {
+  display: flex;
+  flex-direction: column;
+  }
+  .label-title {
+  font-weight: 300;
+  margin: 15px 0;
+  }
+  .label {
+    min-height: 50px;
+  margin: 0 3px;
+  padding: 5px 20px;
+  border-radius: 5px;
+  }
+
+.modal-wrapper{
+  position: fixed;
+  padding-top: 150px;
+  background-color: rgba(0,0,0,0.7);
+  width: 100vw;
+  height: 100vh;
+  left: 0;
+  top: 0;
+}
+.modal-body{
+margin: auto;
+padding: 20px;
+border-radius: 5px;
+width: 80%;
+background-color: #fefefe;
+border: 1px solid #888;
+}
+
+hr{
+  padding-top: 20px;
+}
+
+.modal-close{
+  float: right;
+  font-size: 1.5em;
+  color: #282c34;
+}
+
+.textbox-edit {
+  margin-top: 25px;
+  padding: 2em;
+  font-size: 1em;
+  width: 50%;
+  background: rgb(226, 221, 221);
+  border-radius: 5px;
+  }
+
+  .edit-area {
+    position: relative;
+    }
+    
+    .edit-icon {
+  position: absolute;
+  top: 35px;
+  left: 10px;
+    }
+
+textarea.textbox-edit:hover {
+  transform: scale(1.01);
+  }
+
+.modal-wrapper button {
+  margin: 20px 0 0 0;
+  background: rgb(73, 176, 236);
+  width: 30%;
+    }
+
 .App-logo {
   height: 40vmin;
 }
@@ -19,4 +220,34 @@
 
 .App-link {
   color: #09d3ac;
+}
+
+.board-wrapper{padding: 50px;}
+
+.new-list-wrapper{
+  background-color: crimson;
+  padding: 50px;
+}
+.list-wrapper{
+  background-color: darksalmon;
+}
+
+.list{
+  background-color: cornflowerblue;;
+}
+
+.list-header{
+background-color: brown;
+}
+
+.peterwind{
+  background-color:transparent;
+  color: #ffffff;
+  font-size: 24px;
+  border: none;
+  padding: 10px;
+  outline: none;
+}
+.card{
+  background-color: darkgoldenrod;;
 }
