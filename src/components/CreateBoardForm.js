@@ -22,7 +22,7 @@ class CreateBoardForm  extends React.Component{
     }
     render(){
         return(
-            <form className="create-board-wrapper"
+            <form className="row space"
                 onSubmit ={this.handleSubmit}>
                     <input
                         type="text"

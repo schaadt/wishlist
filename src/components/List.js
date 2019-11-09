@@ -100,8 +100,8 @@ class List extends React.Component{
 
     render (){
         return (
-            <div className="flex-grid-thirds">
-                <div className="col">
+            <div className="column box2 space_bund">
+                <div className="list-header">
                     <input 
                     type ="text" 
                     className="peterwind"

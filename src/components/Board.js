@@ -106,23 +106,24 @@ class Board extends React.Component{
                 
             <div className="row" style={{backgroundColor: this.state.currentBoard.background }}>
 
-            <div className="board-header">
+                <div className="row space2">
            {/* <h1> {user.name} </h1> */}
                 {/* <h3>{this.state.currentBoard.title}</h3> */}
                 <input type="text" name="boardTitle" onChange={this.updateBoard} defaultValue={this.state.currentBoard.title}/>
                 <button onClick={this.deleteBoard}>Delete Board</button>
-            </div>
+                </div>
 
-                <div className ="list-wrapper">
-
+                
+                <div className="row space2">
                     {Object.keys(this.state.currentLists).map(key => (
                     <List 
                     key={this.state.currentLists[key].id} 
                     list = {this.state.currentLists[key]}
                     deleteList={this.props.deleteList}/> 
                     ))} 
-
-                </div>
+                    </div>
+           
+                    <div className="column">
                 <form onSubmit = {this.createNewList}
                 className="new-list-wrapper">
                         <input
@@ -131,6 +132,7 @@ class Board extends React.Component{
                         name ="name"
                         placeholder="+ New List" />
                 </form>
+                </div>
                 </div>
             )}
             </AuthConsumer>

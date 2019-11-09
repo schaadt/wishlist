@@ -13,7 +13,7 @@ class BoardPreview extends React.Component{
     }
     render(){
         return (
-           <div className="column box"
+           <div className="column box space_bund"
            onClick= {this.goToBoard}
            style={{backgroundColor: this.props.board.background}}>
                <p className="board-text">{this.props.board.title}</p>

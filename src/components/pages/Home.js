@@ -15,7 +15,7 @@ class Home extends React.Component {
             <div>
                 <span>{this.props.match.params.userId}</span>
                 <CreateBoardForm createNewBoard={this.props.createNewBoard} />
-                <div className="row">
+                <div className="row space">
 
             {
                 Object.keys(this.props.boards).map(key =>(
