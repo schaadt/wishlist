@@ -5,17 +5,16 @@ import CreateBoardForm from '../CreateBoardForm'
 
 
 class Home extends React.Component {
-
+    // Sørger for at den user der logget ind kun kan se de boards han selv har lavet.
     componentDidMount(){
-        this.props.getBoards()
+        this.props.getBoards(this.props.match.params.userId)
       }
 
     render(){
         return(
             <div>
-                <span>{this.props.match.params.userId}</span>
                 <CreateBoardForm createNewBoard={this.props.createNewBoard} />
-                <div className="row space">
+                <div className="row center-items">
 
             {
                 Object.keys(this.props.boards).map(key =>(

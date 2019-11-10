@@ -9,7 +9,8 @@ class Board extends React.Component{
 
     state = {
         currentBoard: {},
-        currentLists: []
+        currentLists: [],
+        message: ''
     }
     componentDidMount(){
         //Henter IDet fra adresseLinien
@@ -59,13 +60,15 @@ class Board extends React.Component{
             const board = await boardsRef.doc(boardId).get()
             this.setState({currentBoard: board.data().board})
         } catch (error) {
-            console.log('error getting boards', error)
+            this.setState({
+                message: 'Board not Found'
+            })
         }
     }
 
     addBoardInput = React.createRef()
 
-    createNewList = async (e) => {
+    createNewList = async (e, userId) => {
         try{
         e.preventDefault()
         /* console.log(this.addBoardInput.current.value) */
@@ -73,6 +76,7 @@ class Board extends React.Component{
             title: this.addBoardInput.current.value,
             board: this.props.match.params.boardId,
             createdAt: new Date(),
+            user: userId
         }
 
         if(list.title && list.board) {
@@ -87,6 +91,9 @@ class Board extends React.Component{
     deleteBoard = async () => {
         const boardId = this.props.match.params.boardId
         this.props.deleteBoard(boardId)
+        this.setState({
+            message: 'Board not Found'
+        })
     }
 
     updateBoard = e => {
@@ -103,18 +110,27 @@ class Board extends React.Component{
             <AuthConsumer>
 
             {({user}) => (
+
+                <React.Fragment>
+                {user.id === this.state.currentBoard.user ? (
+
+                
                 
             <div className="row" style={{backgroundColor: this.state.currentBoard.background }}>
 
-                <div className="row space2">
+                {this.state.message === '' ? (
+            
+                <div className="row center-items top-space">
            {/* <h1> {user.name} </h1> */}
                 {/* <h3>{this.state.currentBoard.title}</h3> */}
                 <input type="text" name="boardTitle" onChange={this.updateBoard} defaultValue={this.state.currentBoard.title}/>
-                <button onClick={this.deleteBoard}>Delete Board</button>
+                <button className="logout-color" onClick={this.deleteBoard}>Delete Board</button>
                 </div>
-
+                ): (
+                    <h2>{this.state.message}</h2>
+                )}
                 
-                <div className="row space2">
+                <div className="row center-items">
                     {Object.keys(this.state.currentLists).map(key => (
                     <List 
                     key={this.state.currentLists[key].id} 
@@ -123,17 +139,21 @@ class Board extends React.Component{
                     ))} 
                     </div>
            
-                    <div className="column">
-                <form onSubmit = {this.createNewList}
+                    <div className="row center-items">
+                <form onSubmit = {(e) => this.createNewList(e, user.id)}
                 className="new-list-wrapper">
                         <input
-                        type="text"
+                        type={this.state.message === '' ? 'text' : 'hidden'}
                         ref ={this.addBoardInput}
                         name ="name"
                         placeholder="+ New List" />
                 </form>
                 </div>
                 </div>
+                ) : (
+                    <span></span>
+                )}
+                </React.Fragment>
             )}
             </AuthConsumer>
        )

@@ -1,29 +1,32 @@
 import React from 'react'
 import PropTypes from 'prop-types';
+import {AuthConsumer} from '../components/AuthContext'
 
 class CreateBoardForm  extends React.Component{
 
     state = {
         title: '',
-        background: '#80ccff'
+        background: '#1f3a93'
     }
 
-    handleSubmit = (e) => {
+    handleSubmit = (e, userId) => {
         e.preventDefault()
         const board = {
             title: this.state.title,
             background: this.state.background,
-            createAt: new Date(),
-            user: 'abc123'
+            createdAt: new Date(),
+            user: userId
         }
-        if(board.title && board.background) {
+        if(board.title && board.background && board.user) {
             this.props.createNewBoard(board)
         }
     }
     render(){
         return(
-            <form className="row space"
-                onSubmit ={this.handleSubmit}>
+            <AuthConsumer>
+                {({user}) =>(
+                <form className="row center-items top-space"
+                onSubmit ={(e) => this.handleSubmit(e, user.id)}>
                     <input
                         type="text"
                         name= "name"
@@ -34,16 +37,19 @@ class CreateBoardForm  extends React.Component{
                 <select name="background"
                     onChange = {(e) => this.setState({background: e.target.value})}
                 >
-                    <option value="#80ccff">Blue</option>
-                    <option value="#80ffaa">Green</option>
-                    <option value="#f94a2e">Red</option>
-                    <option value="#ffb3ff">Pink</option>
-                    <option value="#bf00ff">Purple</option>
-                    <option value="#ffaa33">Orange</option>
+                    <option value="#1f3a93">Blue</option>
+                    <option value="#00b16a">Green</option>
+                    <option value="#cf000f">Red</option>
+                    <option value="#db0a5b">Pink</option>
+                    <option value="#8c14fc">Purple</option>
+                    <option value="#f15a22">Orange</option>
                 </select>
 
-                <button type="submit">Nyt Board</button>
+                <button type="submit" className="login-color">Nyt Board</button>
             </form>
+                )}
+            </AuthConsumer>
+
         )
     }
 }

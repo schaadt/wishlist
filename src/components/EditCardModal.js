@@ -63,22 +63,15 @@ class EditCardModal extends React.Component {
                         <div>
                             <span className="modal-close" onClick={this.props.toggleModal}>&times;</span>
                             <p className="label-title">Add / Remove:</p>
-                            {this.state.availableLabels.map(label => {
-                                return <span 
-                                onClick = {() => this.setLabel(label)}
-                                className="label" style={{background: label}}></span>
-                            })}
+                           
                             
                         </div>
                 <div className="edit-area">
-                    <span className="edit-icon">&#x270E;</span>
+                
                     <input className="textbox-edit" defaultValue={this.props.cardData.text} ref={this.textInput}></input>
                 </div>
                 <div>
-                    <p className="label-title">Labels</p>
-                   {this.state.selectedLabels.map((label) => {
-                       return <span className="label" style= {{background: label}} key={label}></span>
-                   })}
+         
                 </div>
                 <button type="submit">Save Changes</button>
                 </form>

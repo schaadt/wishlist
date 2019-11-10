@@ -5,19 +5,24 @@ import PageNotFound from './components/pages/PageNotFound'
 import Home from './components/pages/Home'
 import {BrowserRouter, Route, Switch} from 'react-router-dom'
 import {boardsRef, listsRef, cardsRef} from './firebase'
-import {AuthProvider} from './components/AuthContext'
+import AuthProvider from './components/AuthContext'
+import UserForm from './components/UserForm'
+import Header from './components/Header'
 
 
 class App extends React.Component {
   state = {
     boards: []
   }
-    // Henter Board Data ned fra firebase
+    // Henter Board Data ned fra firebase, og viser det rigtige data fra brugeren der logget ind
   getBoards = async userId => {
     try{
 
       this.setState({ boards: []} )
-      const boards = await boardsRef.get()
+      const boards = await boardsRef
+        .where('board.user', '==', userId)
+        .orderBy('board.createdAt')
+        .get()
       boards.forEach(board =>{
         const data = board.data().board
         const boardObj = {
@@ -109,7 +114,12 @@ render(){
     <div>
       <BrowserRouter>
       <AuthProvider>
+        <Header />
       <Switch>
+        <Route
+        exact
+        path="/"
+        component={UserForm}/>
       <Route 
         exact 
         path= "/:userId/boards"
